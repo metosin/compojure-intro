@@ -1,5 +1,9 @@
 # compojure-intro
 
+## Development
+
+try `lein eclipse`or `lein idea`.
+
 ## Running
 
 To start a web server for the application, run:
