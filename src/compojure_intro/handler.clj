@@ -25,7 +25,7 @@
   (GET "/user/:id" [id] (str "user #" id))
 
   (GET "/pizza/:id" [id] (json {:id 1 :name "quatro"}))
-  (POST "/pizza" {data :json-params} (json data))
+  (POST "/pizza" {data :params} (json data))
 
   (context "/api" []
     (context "/v1" []
