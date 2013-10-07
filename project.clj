@@ -9,6 +9,8 @@
                  [compojure "1.1.5"]]
   :plugins [[lein-ring "0.8.7"]]
   :ring {:handler compojure-intro.handler/app}
-  :profiles {:dev {:dependencies [[ring-mock "0.1.5"]
+  :profiles {:dev {:plugins [[lein2-eclipse "2.0.0"]
+                             [lein-idea "1.0.1"]]
+                   :dependencies [[ring-mock "0.1.5"]
                                   [midje "1.5.1"]
                                   [clj-http "0.7.7" :exclusions [commons-codec]]]}})
