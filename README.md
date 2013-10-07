@@ -10,6 +10,10 @@ To start a web server for the application, run:
 
     lein ring server
 
+## Packaging
+
+    lein do clean, ring uberwar
+
 ## License
 
 Copyright &copy; 2013 Metosin Oy
