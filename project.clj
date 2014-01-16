@@ -13,4 +13,5 @@
                              [lein-idea "1.0.1"]]
                    :dependencies [[ring-mock "0.1.5"]
                                   [midje "1.5.1"]
+                                  [clj-webdriver "0.6.0"]
                                   [clj-http "0.7.7" :exclusions [commons-codec]]]}})
