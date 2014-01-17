@@ -1,6 +1,6 @@
 (ns compojure-intro.handler
   (:require [compojure.handler :as handler]
-            [compojure.route :refer [resources not-found]]
+            [compojure.route :as route]
             [ring.middleware.json :as middleware]
             [ring.util.response :refer [response content-type]]
             [cheshire.core :as cheshire]
@@ -12,30 +12,39 @@
     response
     (content-type "application/json; charset=utf-8")))
 
-(def ping-route
-  (GET "/ping" [] "pong"))
-
-(defn info-route [version]
-  (GET "/info" [] (json {:version version
-                         :date    (java.util.Date.)})))
+(defn ping-route [version]
+  (GET "/ping" []
+    (json {:ping "pong"
+           :date (java.util.Date.)
+           :version version})))
 
 (defroutes app-routes
-  (GET "/" [] "Hello World")
-  (GET "/hello" [name] (str "hello, " name))
-  (GET "/user/:id" [id] (str "user #" id))
 
-  (GET "/pizza/:id" [id] (json {:id 1 :name "quatro"}))
+  ; static route
+  (GET "/" [] "Hello World")
+
+  ; query paramters
+  (GET "/hello" [name] (str "hello, " name))
+
+  ; path parameters returning json
+  (GET "/pizza/:id" [id]
+    (json {:id id
+           :name "Quatro"
+           :toppings [:ham :olives :etc]}))
+
+  ; echo params in json
   (POST "/pizza" {data :params} (json data))
 
+  ; contexts /api/v2/ping etc.
   (context "/api" []
-    (context "/v1" []
-      ping-route)
-    (context "/v2" []
-      ping-route
-      (info-route 2)))
+    (context "/v:version" [version]
+      (ping-route version)))
 
-  (resources "/")
-  (not-found "Not Found"))
+  ; serve public resources
+  (route/resources "/")
+
+  ; nothing matched
+  (route/not-found "Not Found"))
 
 (def app
   (->
