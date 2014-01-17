@@ -7,8 +7,6 @@
 
 (def uri "mongodb://127.0.0.1/clojure-intro")
 
-(defn id [] (ObjectId.))
-
 (comment
   ;; connect
   (m/connect-via-uri! uri)
