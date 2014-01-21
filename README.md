@@ -10,9 +10,21 @@ To start a web server for the application, run:
 
     lein ring server
 
-## Packaging
+or run ```main-``` from ```compojure-intro.server``` namespace in repl
 
-    lein do clean, ring uberwar
+## Packaking
+
+    lein do clean, uberjar
+
+## Running
+
+### Standalone
+
+    java -jar target/compojure-intro-0.1.0-SNAPSHOT-standalone.jar
+
+### Warred
+
+    jetty target/compojure-intro-0.1.0-SNAPSHOT-standalone.jar
 
 ## License
 
